@@ -141,12 +141,12 @@ public class MinimizedArrangement<T extends Serializable> extends ChatHeadArrang
                     zIndex++;
                 }
             }
-            if (relativeXPosition == -1) {
+            if (relativeXPosition != -1) {
                 idleStateX = container.getConfig().getInitialPosition().x;
             } else {
                 idleStateX = (int) (relativeXPosition * maxWidth);
             }
-            if (relativeYPosition == -1) {
+            if (relativeYPosition != -1) {
                 idleStateY = container.getConfig().getInitialPosition().y;
             } else {
                 idleStateY = (int) (relativeYPosition * maxHeight);
