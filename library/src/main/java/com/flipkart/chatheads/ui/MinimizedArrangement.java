@@ -141,6 +141,12 @@ public class MinimizedArrangement<T extends Serializable> extends ChatHeadArrang
                     zIndex++;
                 }
             }
+            
+            String roundedX = String.format("%.2f", relativeXPosition);
+            String roundedY = String.format("%.2f", relativeYPosition);
+            roundedX = roundedX.replace("-", "").replace(",", "");
+            roundedY = roundedY.replace("-", "").replace(",", "");
+            
             if (relativeXPosition == -1.0 || relativeXPosition == Double.NEGATIVE_INFINITY) {
                 idleStateX = container.getConfig().getInitialPosition().x;
             } else {
@@ -150,6 +156,11 @@ public class MinimizedArrangement<T extends Serializable> extends ChatHeadArrang
                 idleStateY = container.getConfig().getInitialPosition().y;
             } else {
                 idleStateY = (int) (relativeYPosition * maxHeight);
+            }
+            
+            if((relativeXPosition == 0 && relativeYPosition == 0) || roundedX.equals("000") && roundedY.equals("000")){
+                idleStateX = container.getConfig().getInitialPosition().x;
+                idleStateY = container.getConfig().getInitialPosition().y;
             }
 
             idleStateX = stickToEdgeX(idleStateX, maxWidth, hero);
@@ -334,7 +345,7 @@ public class MinimizedArrangement<T extends Serializable> extends ChatHeadArrang
     }
 
     private Bundle getBundle(int heroIndex) {
-        if(hero!=null && heroIndex != 0) {
+        if(hero!=null) {
             relativeXPosition = hero.getHorizontalSpring().getCurrentValue() * 1.0 / maxWidth;
             relativeYPosition = hero.getVerticalSpring().getCurrentValue() * 1.0 / maxHeight;
         }
