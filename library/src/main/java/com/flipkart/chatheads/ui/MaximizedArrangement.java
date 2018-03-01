@@ -107,7 +107,8 @@ public class MaximizedArrangement<T extends Serializable> extends ChatHeadArrang
                     if (isTransitioning) {
                         isTransitioning = false;
                     }
-                    currentChatHead.getVerticalSpring().removeListener(this);
+                    if(currentChatHead.getVerticalSpring()!=null)
+                        currentChatHead.getVerticalSpring().removeListener(this);
                 }
             });
             currentChatHead.getHorizontalSpring().addListener(new SimpleSpringListener() {
@@ -117,7 +118,8 @@ public class MaximizedArrangement<T extends Serializable> extends ChatHeadArrang
                     if (isTransitioning) {
                         isTransitioning = false;
                     }
-                    currentChatHead.getHorizontalSpring().removeListener(this);
+                    if(currentChatHead.getHorizontalSpring()!=null)
+                        currentChatHead.getHorizontalSpring().removeListener(this);
                 }
             });
         }

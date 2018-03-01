@@ -296,6 +296,12 @@ public class ChatHead<T extends Serializable> extends ImageView implements Sprin
                 velocityTracker.recycle();
                 velocityTracker = null;
                 if(xPositionSpring!=null && yPositionSpring!=null) {
+                    ChatHeadArrangement chatHeadArrangement = manager.getActiveArrangement();
+                    if(chatHeadArrangement instanceof MaximizedArrangement){
+                        if(manager.getChatHeads().size()<2){
+                            manager.setArrangement(MinimizedArrangement.class, null);
+                        }
+                    }
                     boolean touchUpHandled = manager.getActiveArrangement().handleTouchUp(this, xVelocity, yVelocity, activeHorizontalSpring, activeVerticalSpring, wasDragging);
                 }
             }
